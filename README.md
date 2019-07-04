@@ -1,6 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Voice recorder
 
-## Available Scripts
+#O voice recorder utilizado é o desse link: https://github.com/mw999/react-recording-example
+#que possui a explicação nesse post no medium:  https://medium.com/@mattywilliams/recording-audio-with-react-for-amazon-lex-646bdc1b9f75
+#Como ler de volta de um audio BLOB: https://developer.mozilla.org/pt-BR/docs/Web/API/Blob
+
+## Available Scripts 
 
 In the project directory, you can run:
 
