@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ##Voice recorder
 
@@ -71,3 +72,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+=======
+# signalsAndSystems_projectFront
+front end do projeto final da disciplina de sinais e sistemas
+>>>>>>> 8c5fb676a0db472308cd4ad46110dc0a6008534a
