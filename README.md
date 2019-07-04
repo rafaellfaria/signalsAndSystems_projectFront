@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ##Voice recorder
 
-#O voice recorder utilizado é o desse link: https://github.com/mw999/react-recording-example
-#que possui a explicação nesse post no medium:  https://medium.com/@mattywilliams/recording-audio-with-react-for-amazon-lex-646bdc1b9f75
-#Como ler de volta de um audio BLOB: https://developer.mozilla.org/pt-BR/docs/Web/API/Blob
+O voice recorder utilizado é o desse link: https://github.com/mw999/react-recording-example<br/><br/>
+que possui a explicação nesse post no medium:  https://medium.com/@mattywilliams/recording-audio-with-react-for-amazon-lex-646bdc1b9f75<br/><br/>
+Como ler de volta de um audio BLOB: https://developer.mozilla.org/pt-BR/docs/Web/API/Blob<br/><br/>
 
 ## Available Scripts 
 
@@ -72,7 +71,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-=======
-# signalsAndSystems_projectFront
-front end do projeto final da disciplina de sinais e sistemas
->>>>>>> 8c5fb676a0db472308cd4ad46110dc0a6008534a
