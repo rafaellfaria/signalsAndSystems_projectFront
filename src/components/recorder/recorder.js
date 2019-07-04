@@ -57,7 +57,15 @@ class Recorder extends Component {
 
     // Process the audio here.
     console.log(audio);
-
+    let formData = new FormData();
+    formData.append('file', audio);
+    console.log(formData)
+    fetch('http://localhost:5000/file', {
+      origin: "*",  
+      method: "POST",
+      body: formData
+    }).then((res) => res.json())
+    .then(res => console.log(res))
     this.setState({
       recording: false
     });
