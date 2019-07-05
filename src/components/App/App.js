@@ -7,7 +7,7 @@ import home from '../home/home'
 import {Row, Col} from 'antd'
 import recordingSect from '../recording-sect/recording.js'
 import discoveringSect from '../discovering/index'
-
+import 'antd/dist/antd.css'
 class App extends React.Component{
   render(){
     return(

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import RecorderJS from 'recorder-js';
 import {Icon, Input, notification } from 'antd'
 import './recorder.css'
+import waveformPic from './assets/waveformPic.png'
+import waveformGif from './assets/waveformAudio.gif'
 
 import { getAudioStream, exportBuffer } from '../../utilities/audio';
 
@@ -13,6 +15,7 @@ class Recorder extends Component {
       recording: false,
       recorder: null,
       valueNome: '',
+      showPic:true,
     };
     this.startRecord = this.startRecord.bind(this);
     this.stopRecord = this.stopRecord.bind(this);
@@ -49,7 +52,8 @@ class Recorder extends Component {
       this.setState(
         {
           recorder,
-          recording: true
+          recording: true,
+          showPic:false
         },
         () => {
           recorder.start();
@@ -77,7 +81,8 @@ class Recorder extends Component {
     }).then((res) => res.json())
     .then(res => console.log(res))
     this.setState({
-      recording: false
+      recording: false,
+      showPic:true
     });
   }
   openNotification = () => {
@@ -99,21 +104,32 @@ class Recorder extends Component {
     }
 
     return (
-      <div style={{display:'flex', flexDirection:"row", justifyContent:'center', alignItems:'center'}}>
-          <button className="buttonRecords"
-            onClick={() => {
-              recording ? console.log('already recording') : this.startRecord();
-            }}
-            >
-            <Icon type="play-circle" />
-          </button>
-          <button className="buttonRecords"
-            onClick={() => {
-              recording ? this.stopRecord() : console.log('no audios being recorded');
-            }}
-            >
-            <Icon type="pause-circle" />
-          </button>
+      <div style={{display:'flex', flexDirection:"column", justifyContent:'center', alignItems:'center'}}>
+          <div>
+            {this.state.showPic && 
+              <img src={waveformPic} style={{display:'block'}}/>
+            }
+            {!this.state.showPic && 
+              <img src={waveformGif} style={{display:'block'}}/>
+            }
+              
+          </div>
+          <div style={{marginTop:'10px'}}>
+            <button className="buttonRecords"
+              onClick={() => {
+                recording ? console.log('already recording') : this.startRecord();
+              }}
+              >
+              <Icon type="play-circle" />
+            </button>
+            <button className="buttonRecords"
+              onClick={() => {
+                recording ? this.stopRecord() : console.log('no audios being recorded');
+              }}
+              >
+              <Icon type="pause-circle" />
+            </button>
+          </div>
       </div>
       
       
