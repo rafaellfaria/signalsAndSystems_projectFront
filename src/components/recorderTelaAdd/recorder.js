@@ -79,16 +79,12 @@ class Recorder extends Component {
     formData.append('file', audio);
     formData.append('nomePessoa', this.state.valueNome)
     console.log(formData)
-    fetch('http://localhost:5000/file', {
+    fetch('http://localhost:5000/model', {
       origin: "*",  
       method: "POST",
       body: formData
     }).then((res) => res.json())
-    .then(res => console.log(res))
-    this.setState({
-      showPic:true,
-      recording: false
-    });
+    .then(res =>{this.setState({resposta: res.res})})
   }
   openNotification = () => {
     const args = {
@@ -139,7 +135,7 @@ class Recorder extends Component {
             <Icon type="pause-circle" />
           </button>
         </div>
-        
+        {this.state.resposta && <div><h1>MODELO CRIADO!</h1></div>}
       </div>
       
       
