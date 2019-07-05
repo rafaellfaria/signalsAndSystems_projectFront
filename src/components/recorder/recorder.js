@@ -53,6 +53,7 @@ class Recorder extends Component {
     const { recorder } = this.state;
 
     const { buffer } = await recorder.stop()
+    console.log(buffer)
     const audio = exportBuffer(buffer[0]);
 
     // Process the audio here.

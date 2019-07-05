@@ -123,7 +123,7 @@ function getAudioStream() {
    */
   function exportBuffer(recBuffer) {
     const downsampledBuffer = downsampleBuffer(recBuffer, 16000);
-    const encodedWav = encodeWAV(downsampledBuffer);
+    const encodedWav = encodeWAV(recBuffer);
     const audioBlob = new Blob([encodedWav], {
       type: 'application/octet-stream'
     });
