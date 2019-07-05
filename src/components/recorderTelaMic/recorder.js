@@ -75,7 +75,15 @@ class Recorder extends Component {
       method: "POST",
       body: formData
     }).then((res) => res.json())
-    .then(res => console.log(res))
+    .then(res => {
+      let respostas = [
+        res['speaker'],
+        JSON.parse(res['names']),
+        JSON.parse(res['p']) 
+      ] 
+      this.setState({respostas: respostas})
+      console.log(respostas)
+    })
     this.setState({
       recording: false
     });
@@ -99,21 +107,43 @@ class Recorder extends Component {
     }
 
     return (
-      <div style={{display:'flex', flexDirection:"row", justifyContent:'center', alignItems:'center'}}>
-          <button className="buttonRecords"
-            onClick={() => {
-              recording ? console.log('already recording') : this.startRecord();
-            }}
-            >
-            <Icon type="play-circle" />
-          </button>
-          <button className="buttonRecords"
-            onClick={() => {
-              recording ? this.stopRecord() : console.log('no audios being recorded');
-            }}
-            >
-            <Icon type="pause-circle" />
-          </button>
+      <div>
+
+        <div style={{display:'flex', flexDirection:"row", justifyContent:'center', alignItems:'center'}}>
+            <button className="buttonRecords"
+              onClick={() => {
+                recording ? console.log('already recording') : this.startRecord();
+              }}
+              >
+              <Icon type="play-circle" />
+            </button>
+            <button className="buttonRecords"
+              onClick={() => {
+                recording ? this.stopRecord() : console.log('no audios being recorded');
+              }}
+              >
+              <Icon type="pause-circle" />
+            </button>
+        </div>
+        <div style={{marginTop: 20}}>
+          
+          {this.state.respostas ?
+            <div>
+              <div>
+                Você é {this.state.respostas[0]} né?! Tenho certeza que acertei!!!
+              </div>
+              <div>
+                <h4>Lista de Probabilidades</h4>
+                {
+                  this.state.respostas[1].map((item, index) => {
+                    return <p key={index}>{item} - {this.state.respostas[2][index]}</p>
+                  })
+                }
+              </div>
+            </div>
+            :null
+          }
+        </div>
       </div>
       
       
