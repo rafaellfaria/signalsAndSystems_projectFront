@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import RecorderJS from 'recorder-js';
 import {Icon, Input, notification } from 'antd'
 import './recorder.css'
+import waveformPic from './assets/waveformPic.png'
+import waveformGif from './assets/waveformAudio.gif'
 
 import { getAudioStream, exportBuffer } from '../../utilities/audio';
 
@@ -13,6 +15,7 @@ class Recorder extends Component {
       recording: false,
       recorder: null,
       valueNome: '',
+      showPic:true,
     };
     this.startRecord = this.startRecord.bind(this);
     this.stopRecord = this.stopRecord.bind(this);
@@ -49,7 +52,8 @@ class Recorder extends Component {
       this.setState(
         {
           recorder,
-          recording: true
+          recording: true,
+          showPic:false
         },
         () => {
           recorder.start();
@@ -85,7 +89,8 @@ class Recorder extends Component {
       console.log(respostas)
     })
     this.setState({
-      recording: false
+      recording: false,
+      showPic:true
     });
   }
   openNotification = () => {
@@ -107,9 +112,17 @@ class Recorder extends Component {
     }
 
     return (
-      <div>
-
-        <div style={{display:'flex', flexDirection:"row", justifyContent:'center', alignItems:'center'}}>
+      <div style={{display:'flex', flexDirection:"column", justifyContent:'center', alignItems:'center'}}>
+          <div>
+            {this.state.showPic && 
+              <img src={waveformPic} style={{display:'block'}}/>
+            }
+            {!this.state.showPic && 
+              <img src={waveformGif} style={{display:'block'}}/>
+            }
+              
+          </div>
+          <div style={{marginTop:'10px'}}>
             <button className="buttonRecords"
               onClick={() => {
                 recording ? console.log('already recording') : this.startRecord();
@@ -129,14 +142,14 @@ class Recorder extends Component {
           
           {this.state.respostas ?
             <div>
-              <div>
+              <h2>
                 Você é {this.state.respostas[0]} né?! Tenho certeza que acertei!!!
-              </div>
+              </h2>
               <div>
-                <h4>Lista de Probabilidades</h4>
+                <h3>Lista de Probabilidades</h3>
                 {
                   this.state.respostas[1].map((item, index) => {
-                    return <p key={index}>{item} - {this.state.respostas[2][index]}</p>
+                    return <h4 key={index}>{item} - {this.state.respostas[2][index]}</h4>
                   })
                 }
               </div>
@@ -144,9 +157,7 @@ class Recorder extends Component {
             :null
           }
         </div>
-      </div>
-      
-      
+    </div>      
     );
   }
 }

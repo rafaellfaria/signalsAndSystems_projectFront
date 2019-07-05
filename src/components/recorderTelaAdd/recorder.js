@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import RecorderJS from 'recorder-js';
 import {Icon, Input, notification } from 'antd'
 import './recorder.css'
-
+import waveformGif from './assets/waveformAudio.gif'
+import waveformPic from './assets/waveformPic.png'
 import { getAudioStream, exportBuffer } from '../../utilities/audio';
 
 class Recorder extends Component {
@@ -13,6 +14,7 @@ class Recorder extends Component {
       recording: false,
       recorder: null,
       valueNome: '',
+      showPic: true
     };
     this.startRecord = this.startRecord.bind(this);
     this.stopRecord = this.stopRecord.bind(this);
@@ -53,7 +55,8 @@ class Recorder extends Component {
       this.setState(
         {
           recorder,
-          recording: true
+          recording: true,
+          showPic:false
         },
         () => {
           recorder.start();
@@ -83,6 +86,7 @@ class Recorder extends Component {
     }).then((res) => res.json())
     .then(res => console.log(res))
     this.setState({
+      showPic:true,
       recording: false
     });
   }
@@ -106,6 +110,15 @@ class Recorder extends Component {
 
     return (
       <div style={{display:'flex', flexDirection:"column", justifyContent:'center', alignItems:'center'}}>
+        <div>
+          {this.state.showPic && 
+            <img src={waveformPic} style={{display:'block'}}/>
+          }
+          {!this.state.showPic && 
+            <img src={waveformGif} style={{display:'block'}}/>
+          }
+            
+        </div>
         <div>
           <h5 style={{margin:'0', display:'bloc', margin:'0 auto', textAlign:'center'}}>Seu nome: </h5>
           <Input onChange={this.onChange} defaultValue={''} style={{backgroundColor:"transparent", borderRadius:'2.5em'}}></Input>

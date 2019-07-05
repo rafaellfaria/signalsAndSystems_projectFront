@@ -17,7 +17,10 @@ export default class Header extends React.Component {
             <Typography variant="h" style={{flexGrow:'1'}}>
               <img style={{height:'60px',width:'auto'}} src={logoCin}/>
             </Typography>
-            <Link to='/'style={{textDecoration:'none'}}><Button style={{color:'white',textTransform:'none',textDecoration:'none'}}>HOME</Button></Link>
+            <div style={{display: 'flex', flex: 2, justifyContent: 'start', alignContent: 'center'}}>
+              <h3 style={{alignSelf:'center', color: 'white', fontSize: 22}}>Signal and Systems - Speaker Recognition</h3>
+            </div>
+            <Link to='/'style={{display:'flex', flex:1, justifyContent:'flex-end', textDecoration:'none'}}><Button style={{color:'white',textTransform:'none',textDecoration:'none'}}>HOME</Button></Link>
           </Toolbar>
         </AppBar>
     </div>
