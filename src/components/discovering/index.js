@@ -2,7 +2,7 @@ import React from 'react';
 import {Row, Col, Progress, Icon} from 'antd'
 import {Link} from 'react-router-dom'
 
-import Recorder from '../recorder/recorder';
+import Recorder from '../recorderTelaMic/recorder';
 
 export default class Home extends React.Component {
 

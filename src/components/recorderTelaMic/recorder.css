@@ -1,0 +1,12 @@
+.buttonRecords{
+    background-image: linear-gradient(to right, purple , blue);
+    border: .5px solid black;
+    margin:0 1px;
+    border-radius:2.5em;
+    width:120px;
+    height:45px;
+    color:white;
+    font-size:24px;
+    padding-top:5px;
+    font-weight:bold;
+}

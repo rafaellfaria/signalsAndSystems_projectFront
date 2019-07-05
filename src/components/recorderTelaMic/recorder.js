@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RecorderJS from 'recorder-js';
-import {Icon} from 'antd'
+import {Icon, Input, notification } from 'antd'
 import './recorder.css'
 
 import { getAudioStream, exportBuffer } from '../../utilities/audio';
@@ -11,10 +11,18 @@ class Recorder extends Component {
     this.state = {
       stream: null,
       recording: false,
-      recorder: null
+      recorder: null,
+      valueNome: '',
     };
     this.startRecord = this.startRecord.bind(this);
     this.stopRecord = this.stopRecord.bind(this);
+    this.onChange = this.onChange.bind(this)
+  }
+
+  onChange (value){
+    this.setState({
+      valueNome: value.target.value
+    })
   }
 
   async componentDidMount() {
@@ -32,24 +40,25 @@ class Recorder extends Component {
   }
 
   startRecord() {
-    const { stream } = this.state;
+      const { stream } = this.state;
 
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const recorder = new RecorderJS(audioContext);
-    recorder.init(stream);
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const recorder = new RecorderJS(audioContext);
+      recorder.init(stream);
 
-    this.setState(
-      {
-        recorder,
-        recording: true
-      },
-      () => {
-        recorder.start();
-      }
-    );
+      this.setState(
+        {
+          recorder,
+          recording: true
+        },
+        () => {
+          recorder.start();
+        }
+      );
   }
 
   async stopRecord() {
+
     const { recorder } = this.state;
 
     const { buffer } = await recorder.stop()
@@ -71,32 +80,43 @@ class Recorder extends Component {
       recording: false
     });
   }
+  openNotification = () => {
+    const args = {
+      message: 'Nome não inputado',
+      description:
+        'Precisamos que você inpute o seu nome antes da gravação para que seja incluído no nosso banco.',
+      duration: 5,
+    };
+    notification.open(args);
+  };
 
   render() {
     const { recording, stream } = this.state;
-
+    
     // Don't show record button if their browser doesn't support it.
     if (!stream) {
       return null;
     }
 
     return (
-      <div>
-      <button className="buttonRecords"
-        onClick={() => {
-          recording ? console.log('already recording') : this.startRecord();
-        }}
-        >
-        <Icon type="play-circle" />
-      </button>
-      <button className="buttonRecords"
-        onClick={() => {
-          recording ? this.stopRecord() : console.log('no audios being recorded');
-        }}
-        >
-        <Icon type="pause-circle" />
-      </button>
+      <div style={{display:'flex', flexDirection:"row", justifyContent:'center', alignItems:'center'}}>
+          <button className="buttonRecords"
+            onClick={() => {
+              recording ? console.log('already recording') : this.startRecord();
+            }}
+            >
+            <Icon type="play-circle" />
+          </button>
+          <button className="buttonRecords"
+            onClick={() => {
+              recording ? this.stopRecord() : console.log('no audios being recorded');
+            }}
+            >
+            <Icon type="pause-circle" />
+          </button>
       </div>
+      
+      
     );
   }
 }

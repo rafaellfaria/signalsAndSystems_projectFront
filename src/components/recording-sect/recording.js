@@ -1,5 +1,5 @@
 import React from 'react';
-import Recorder from '../recorder/recorder';
+import Recorder from '../recorderTelaAdd/recorder';
 
 export default class Home extends React.Component {
   constructor(props) {
